@@ -1,6 +1,6 @@
 module Main where
 
-import Lib
+import           InferenceLib
 
 main :: IO ()
-main = someFunc
+main = putStrLn "Hello World"
