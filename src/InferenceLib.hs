@@ -1,8 +1,10 @@
 module InferenceLib
     ( Expr(EVar, EApp, ELam)
     , Type(TVar, (:->))
+    , newMultiArgumentLam
     , infer
     , TI
+    , prettyShow
     )
 where
 
@@ -19,7 +21,7 @@ newTyVar :: TI Type
 newTyVar = do
     s <- get
     put (s + 1)
-    pure (TVar ("u" ++ show s))
+    pure (TVar $ show s)
 
 data Expr
     = EVar String
@@ -62,19 +64,13 @@ inferUtil ctx (EApp fun arg) = do
     s3          <- unify (applySubstToType s2 tyFun) (tyArg :-> tyRes)
     pure (s3, tyRes)
 
--- infer :: Expr -> TI Type
--- infer expr = do
---     (subst, ty) <-inferUtil Map.empty expr
---     pure ty
-
 infer :: Expr -> Type
-infer expr = let s = inferUtil Map.empty expr in snd . fst $ runState s 0
+infer expr = snd $ evalState (inferUtil Map.empty expr) 0
 
 applySubstToType :: Substitution -> Type -> Type
 applySubstToType subst ty = case ty of
-    TVar var -> fromMaybe (TVar var) (Map.lookup var subst)
-    arg :-> res ->
-        applySubstToType subst arg :-> applySubstToType subst res
+    TVar var    -> fromMaybe (TVar var) (Map.lookup var subst)
+    arg :-> res -> applySubstToType subst arg :-> applySubstToType subst res
 
 applySubstToScheme :: Substitution -> Scheme -> Scheme
 applySubstToScheme subst (Scheme vars t) =
@@ -104,8 +100,16 @@ unify (arg1 :-> res1) (arg2 :-> res2) = do
     pure (composeSubst s1 s2)
 unify (TVar var) t          = varBind var t
 unify t          (TVar var) = varBind var t
--- unify t1 t2 = error $ "types do not unify: " ++ show t1 ++ " vs. " ++ show t2
 
 freeTypeVars :: Type -> Set String
-freeTypeVars (TVar var    ) = Set.singleton var
+freeTypeVars (TVar var   ) = Set.singleton var
 freeTypeVars (arg :-> res) = Set.union (freeTypeVars arg) (freeTypeVars res)
+
+prettyShow :: Type -> String
+prettyShow (TVar var) = var
+prettyShow (arg :-> res) =
+    "(" ++ prettyShow arg ++ " -> " ++ prettyShow res ++ ")"
+
+newMultiArgumentLam :: [String] -> Expr -> Expr
+newMultiArgumentLam [arg] body = ELam arg body
+newMultiArgumentLam (arg:otherArgs) body = ELam arg $ newMultiArgumentLam otherArgs body
