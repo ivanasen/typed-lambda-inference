@@ -2,7 +2,6 @@ module ExprParser
     ( tokenize
     , parse
     , Token(TDot, TVar, TOpeningBracket, TClosingBracket, TLambda)
-    , splitOnRightMostClosingBracket
     )
 where
 
@@ -47,16 +46,13 @@ parseFromTokens (TVar fun : xs) = do
     body <- parseFromTokens xs
     pure $ EApp (EVar fun) body
 parseFromTokens (TOpeningBracket : xs) = do
-    let (left, right) = splitOnRightMostClosingBracket xs
-    let leftNoBracket = init left
-    if null leftNoBracket
-        then Nothing
-        else if null right
-            then parseFromTokens leftNoBracket
-            else do
-                parsedLeft  <- parseFromTokens leftNoBracket
-                parsedRight <- parseFromTokens right
-                pure $ EApp parsedLeft parsedRight
+    (left, right) <- splitOnMatchingBracket xs
+    parsedLeft    <- parseFromTokens left
+    if null right
+        then pure parsedLeft
+        else do
+            parsedRight <- parseFromTokens right
+            pure $ EApp parsedLeft parsedRight
 parseFromTokens _ = Nothing
 
 extractArgs :: [Token] -> Maybe ([Token], [String])
@@ -69,7 +65,6 @@ extractArgs _ = Nothing
 parse :: String -> Maybe Expr
 parse = parseFromTokens . tokenize
 
-
 areValidBrackets :: [Token] -> Bool
 areValidBrackets = areValidBracketsUtil 0
 
@@ -81,11 +76,16 @@ areValidBracketsUtil s (TClosingBracket : xs)
     | otherwise = areValidBracketsUtil (s - 1) xs
 areValidBracketsUtil s (_ : tokens) = areValidBracketsUtil s tokens
 
-splitOnRightMostClosingBracket :: [Token] -> ([Token], [Token])
-splitOnRightMostClosingBracket = foldr
-    (\currentToken (leftPart, rightPart) ->
-        if not (null leftPart) || currentToken == TClosingBracket
-            then (currentToken : leftPart, rightPart)
-            else (leftPart, currentToken : rightPart)
-    )
-    ([], [])
+splitOnMatchingBracket :: [Token] -> Maybe ([Token], [Token])
+splitOnMatchingBracket = splitOnMatchingBracketUtil 1 []
+
+splitOnMatchingBracketUtil
+    :: Int -> [Token] -> [Token] -> Maybe ([Token], [Token])
+splitOnMatchingBracketUtil s acc [] = pure (acc, [])
+splitOnMatchingBracketUtil s acc (TOpeningBracket : xs) =
+    splitOnMatchingBracketUtil (s + 1) (acc ++ [TOpeningBracket]) xs
+splitOnMatchingBracketUtil 1 acc (TClosingBracket : xs) = pure (acc, xs)
+splitOnMatchingBracketUtil s acc (TClosingBracket : xs) =
+    splitOnMatchingBracketUtil (s - 1) (acc ++ [TClosingBracket]) xs
+splitOnMatchingBracketUtil s acc (x : xs) =
+    splitOnMatchingBracketUtil s (acc ++ [x]) xs
