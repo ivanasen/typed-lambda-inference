@@ -1,6 +1,6 @@
 module Main where
 
-import           InferenceLib
+import InferenceClient
 
 main :: IO ()
-main = putStrLn "Hello World"
+main = runClient

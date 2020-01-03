@@ -1,9 +1,12 @@
 module ExprParser
     ( tokenize
+    , parse
     )
 where
 
-import           InferenceLib                   ( Expr(EVar, EApp, ELam), newMultiArgumentLam )
+import           InferenceLib                   ( Expr(EVar, EApp, ELam)
+                                                , newMultiArgumentLam
+                                                )
 import           Data.Map                       ( Map )
 import qualified Data.Map                      as Map
 import           Data.Char                      ( isSpace )
@@ -31,11 +34,11 @@ tokenize (x : xs)
     | otherwise                  = TVar [x] : tokenize xs
 
 parseFromTokens :: [Token] -> Maybe Expr
-parseFromTokens [] = Nothing
-parseFromTokens [TVar var] = pure $ EVar var
-parseFromTokens (TLambda:xs) = do
+parseFromTokens []             = Nothing
+parseFromTokens [TVar var    ] = pure $ EVar var
+parseFromTokens (TLambda : xs) = do
     (remaining, args) <- extractArgs xs
-    remExpr <- parseFromTokens remaining
+    remExpr           <- parseFromTokens remaining
     pure $ newMultiArgumentLam args remExpr
 parseFromTokens (TVar fun : xs) = do
     body <- parseFromTokens xs
@@ -43,17 +46,26 @@ parseFromTokens (TVar fun : xs) = do
 parseFromTokens _ = Nothing
 
 extractArgs :: [Token] -> Maybe ([Token], [String])
-extractArgs (TDot : xs) = pure (xs, [])
+extractArgs (TDot     : xs) = pure (xs, [])
 extractArgs (TVar var : xs) = do
     (remaining, args) <- extractArgs xs
-    pure (remaining, var:args)
+    pure (remaining, var : args)
 extractArgs _ = Nothing
 
 parse :: String -> Maybe Expr
 parse = parseFromTokens . tokenize
-    
 
--- matchBrackets :: [Token] -> ([Int])
+
+areValidBrackets :: [Token] -> Bool
+areValidBrackets = areValidBracketsUtil 0
+
+areValidBracketsUtil :: Int -> [Token] -> Bool
+areValidBracketsUtil _ []                     = True
+areValidBracketsUtil s (TOpeningBracket : xs) = areValidBracketsUtil (s + 1) xs
+areValidBracketsUtil s (TClosingBracket : xs)
+    | s == 0    = False
+    | otherwise = areValidBracketsUtil (s - 1) xs
+areValidBracketsUtil s (_ : tokens) = areValidBracketsUtil s tokens
 
 -- parseFromTokens (TOpeningBracket:xs) = 
 -- parseFromTokens [TLambda:args:TDot:body] = Just $ ELam (parseFromTokens args) (parseFromTokens body)
