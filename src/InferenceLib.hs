@@ -21,7 +21,7 @@ newTyVar :: TI Type
 newTyVar = do
     s <- get
     put (s + 1)
-    pure (TVar $ show s)
+    pure (TVar $ "t" ++ show s)
 
 data Expr
     = EVar String

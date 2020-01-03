@@ -1,6 +1,8 @@
 module ExprParser
     ( tokenize
     , parse
+    , Token(TDot, TVar, TOpeningBracket, TClosingBracket, TLambda)
+    , splitOnRightMostClosingBracket
     )
 where
 
@@ -43,6 +45,17 @@ parseFromTokens (TLambda : xs) = do
 parseFromTokens (TVar fun : xs) = do
     body <- parseFromTokens xs
     pure $ EApp (EVar fun) body
+parseFromTokens (TOpeningBracket : xs) = do
+    let (left, right) = splitOnRightMostClosingBracket xs
+    let leftNoBracket = init left
+    if null leftNoBracket
+        then Nothing
+        else if null right
+            then parseFromTokens leftNoBracket
+            else do
+                parsedLeft  <- parseFromTokens leftNoBracket
+                parsedRight <- parseFromTokens right
+                pure $ EApp parsedLeft parsedRight
 parseFromTokens _ = Nothing
 
 extractArgs :: [Token] -> Maybe ([Token], [String])
@@ -76,3 +89,12 @@ areValidBracketsUtil s (_ : tokens) = areValidBracketsUtil s tokens
 
 -- parseExpr :: String -> Maybe Expr
 -- parseExpr = parseFromTokens . tokenize
+
+splitOnRightMostClosingBracket :: [Token] -> ([Token], [Token])
+splitOnRightMostClosingBracket = foldr
+    (\currentToken (leftPart, rightPart) ->
+        if not (null leftPart) || currentToken == TClosingBracket
+            then (currentToken : leftPart, rightPart)
+            else (leftPart, currentToken : rightPart)
+    )
+    ([], [])

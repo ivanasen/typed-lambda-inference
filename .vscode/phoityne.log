@@ -1,0 +1,330 @@
+2020-01-03 21:13:46 [ThreadId 11] ERROR phoityne - continueRequest failed. [DAP][ERROR] error occurred while runStmt.
+parse error on input ‘.’
+ : Left "[DAP][ERROR] error occurred while runStmt.\nparse error on input \8216.\8217\n"
+
+2020-01-03 21:14:22 [ThreadId 11] ERROR phoityne - continueRequest failed. [DAP][ERROR] error occurred while runStmt.
+parse error on input ‘.’
+ : Left "[DAP][ERROR] error occurred while runStmt.\nparse error on input \8216.\8217\n"
+
+2020-01-03 21:14:43 [ThreadId 11] ERROR phoityne - continueRequest failed. [DAP][ERROR] error occurred while runStmt.
+parse error on input ‘.’
+ : Left "[DAP][ERROR] error occurred while runStmt.\nparse error on input \8216.\8217\n"
+
+2020-01-03 21:14:55 [ThreadId 11] ERROR phoityne - continueRequest failed. [DAP][ERROR] error occurred while runStmt.
+parse error on input ‘.’
+ : Left "[DAP][ERROR] error occurred while runStmt.\nparse error on input \8216.\8217\n"
+
+2020-01-03 21:15:11 [ThreadId 11] ERROR phoityne - continueRequest failed. [DAP][ERROR] error occurred while runStmt.
+parse error on input ‘.’
+ : Left "[DAP][ERROR] error occurred while runStmt.\nparse error on input \8216.\8217\n"
+
+2020-01-03 21:15:56 [ThreadId 11] ERROR phoityne - continueRequest failed. [DAP][ERROR] error occurred while runStmt.
+parse error on input ‘.’
+ : Left "[DAP][ERROR] error occurred while runStmt.\nparse error on input \8216.\8217\n"
+
+2020-01-03 21:16:25 [ThreadId 11] ERROR phoityne - continueRequest failed. [DAP][ERROR] error occurred while runStmt.
+parse error on input ‘.’
+ : Left "[DAP][ERROR] error occurred while runStmt.\nparse error on input \8216.\8217\n"
+
+2020-01-03 21:18:35 [ThreadId 11] ERROR phoityne - continueRequest failed. [DAP][ERROR] error occurred while runStmt.
+parse error on input ‘.’
+ : Left "[DAP][ERROR] error occurred while runStmt.\nparse error on input \8216.\8217\n"
+
+2020-01-03 21:22:48 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. [DAP][ERROR] error occurred while runStmt.
+parse error on input ‘.’
+ : Left "[DAP][ERROR] error occurred while runStmt.\nparse error on input \8216.\8217\n"
+
+2020-01-03 21:25:12 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. subst : Left "Not in scope. subst"
+
+2020-01-03 21:25:47 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. body : Left "Not in scope. body"
+
+2020-01-03 21:26:23 [ThreadId 11] ERROR phoityne - stackTraceRequestHandler failed. no stacktrace found. : Left "no stacktrace found."
+
+2020-01-03 21:27:19 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:27:25 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:27:25 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:27:34 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:27:39 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:27:44 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:27:50 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:27:50 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:27:52 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:28:00 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:28:02 [ThreadId 11] ERROR phoityne - stackTraceRequestHandler failed. no stacktrace found. : Left "no stacktrace found."
+
+2020-01-03 21:29:09 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:29:10 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:29:11 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:29:13 [ThreadId 11] ERROR phoityne - [WARN] stepOut command is not supported. ignored.
+2020-01-03 21:29:16 [ThreadId 11] ERROR phoityne - [WARN] stepOut command is not supported. ignored.
+2020-01-03 21:29:17 [ThreadId 11] ERROR phoityne - [WARN] stepOut command is not supported. ignored.
+2020-01-03 21:29:18 [ThreadId 11] ERROR phoityne - [WARN] stepOut command is not supported. ignored.
+2020-01-03 21:29:21 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:29:22 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:29:22 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:29:22 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:29:22 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:29:22 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:29:23 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:29:23 [ThreadId 11] ERROR phoityne - stackTraceRequestHandler failed. no stacktrace found. : Left "no stacktrace found."
+
+2020-01-03 21:29:29 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:29:30 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:29:31 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:29:31 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:29:33 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:29:36 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:29:37 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:29:38 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:29:45 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:29:48 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:29:49 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:29:54 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:29:55 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:30:14 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:30:24 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:30:31 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:30:39 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:30:41 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:30:43 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:30:45 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:30:47 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:30:49 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:30:55 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:31:07 [ThreadId 11] ERROR phoityne - stackTraceRequestHandler failed. no stacktrace found. : Left "no stacktrace found."
+
+2020-01-03 21:31:18 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:31:18 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:31:19 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:31:20 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:31:21 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:31:26 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:31:26 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:31:27 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:31:30 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:31:30 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:31:31 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:31:31 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:31:32 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:31:33 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:31:34 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:31:37 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:31:44 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:31:45 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:31:46 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:31:46 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:31:47 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:31:51 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:32:09 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:32:11 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:32:12 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:32:13 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:32:13 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:32:14 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:32:15 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:32:15 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:32:16 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:32:16 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:32:24 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:32:24 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:32:25 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:32:25 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:32:27 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:32:28 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:32:29 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:32:30 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:37:39 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:37:40 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:37:43 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:37:44 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:37:45 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:37:45 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:37:47 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:37:51 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:37:52 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:37:53 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:37:54 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:37:54 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:02 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:03 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:05 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:05 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:06 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:07 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:07 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:11 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:12 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:19 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:20 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:20 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:24 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:26 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:30 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:32 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:34 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:35 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:36 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:37 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:38 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:46 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:47 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:48 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:49 [ThreadId 11] ERROR phoityne - stackTraceRequestHandler failed. no stacktrace found. : Left "no stacktrace found."
+
+2020-01-03 21:38:54 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:54 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:54 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:55 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:56 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:57 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:57 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:38:57 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:39:00 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:39:08 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:39:15 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:39:15 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:39:19 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:39:20 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:39:22 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:39:24 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:39:29 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:39:31 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-03 21:39:32 [ThreadId 11] ERROR phoityne - stackTraceRequestHandler failed. no stacktrace found. : Left "no stacktrace found."
+

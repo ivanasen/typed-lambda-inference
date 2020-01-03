@@ -5,16 +5,17 @@ where
 
 import           Control.Monad                  ( forever )
 
-import           InferenceLib                   ( infer
+import           InferenceLib                   ( Expr
+                                                , infer
                                                 , prettyShow
                                                 , Type
                                                 )
 import           ExprParser                     ( parse )
 
-parseAndInfer :: String -> Maybe Type
+parseAndInfer :: String -> Maybe (Expr, Type)
 parseAndInfer s = do
     expr <- parse s
-    pure $ infer expr
+    pure (expr, infer expr)
 
 runClient :: IO ()
 runClient = forever $ do
@@ -22,4 +23,4 @@ runClient = forever $ do
     term <- getLine
     case parseAndInfer term of
         Nothing -> putStrLn "Invalid lambda term."
-        Just t  -> putStrLn $ "Term is of type: " ++ prettyShow t
+        Just (expr, t)  -> putStrLn $ show expr ++ ": " ++ prettyShow t
