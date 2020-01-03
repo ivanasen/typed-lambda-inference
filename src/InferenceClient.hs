@@ -5,11 +5,10 @@ where
 
 import           Control.Monad                  ( forever )
 
-import           InferenceLib                   ( Expr
-                                                , infer
-                                                , prettyShow
+import           InferenceTypes                 ( Expr
                                                 , Type
                                                 )
+import           Inference                      ( infer )
 import           ExprParser                     ( parse )
 
 parseAndInfer :: String -> Maybe (Expr, Type)
@@ -19,8 +18,7 @@ parseAndInfer s = do
 
 runClient :: IO ()
 runClient = forever $ do
-    putStrLn "Type in a lambda term:"
     term <- getLine
     case parseAndInfer term of
-        Nothing -> putStrLn "Invalid lambda term."
-        Just (expr, t)  -> putStrLn $ show expr ++ ": " ++ prettyShow t
+        Nothing        -> putStrLn "Invalid lambda expression"
+        Just (expr, t) -> putStrLn $ show expr ++ ": " ++ show t

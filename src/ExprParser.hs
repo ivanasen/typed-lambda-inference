@@ -6,12 +6,13 @@ module ExprParser
     )
 where
 
-import           InferenceLib                   ( Expr(EVar, EApp, ELam)
-                                                , newMultiArgumentLam
-                                                )
 import           Data.Map                       ( Map )
 import qualified Data.Map                      as Map
 import           Data.Char                      ( isSpace )
+
+import           InferenceTypes                 ( Expr(..)
+                                                , newMultiArgumentLam
+                                                )
 
 data Token
     = TDot
@@ -79,16 +80,6 @@ areValidBracketsUtil s (TClosingBracket : xs)
     | s == 0    = False
     | otherwise = areValidBracketsUtil (s - 1) xs
 areValidBracketsUtil s (_ : tokens) = areValidBracketsUtil s tokens
-
--- parseFromTokens (TOpeningBracket:xs) = 
--- parseFromTokens [TLambda:args:TDot:body] = Just $ ELam (parseFromTokens args) (parseFromTokens body)
--- parseFromTokens [TOpeningBracket : fun : TClosingBracket : arg] = Just $ EApp (parseFromTokens fun) (parseFromTokens arg)
--- parseFromTokens [TOpeningBracket:tokens:TClosingBracket] = parseFromTokens tokens
--- parseFromTokens ((TVar fun):(TVar arg):[]) = Just $ EApp (EVar fun) (EVar arg)
--- parse _ = Nothing
-
--- parseExpr :: String -> Maybe Expr
--- parseExpr = parseFromTokens . tokenize
 
 splitOnRightMostClosingBracket :: [Token] -> ([Token], [Token])
 splitOnRightMostClosingBracket = foldr
