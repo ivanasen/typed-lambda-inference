@@ -1,2 +1,10 @@
+import           Test.HUnit
+
+import qualified InferenceTests
+
+testList = TestList [InferenceTests.testList]
+
 main :: IO ()
-main = putStrLn "Test suite not yet implemented"
+main = do
+    runTestTT testList
+    return()

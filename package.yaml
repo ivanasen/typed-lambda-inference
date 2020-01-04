@@ -10,6 +10,7 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - typed-lambda-inference
+    - HUnit
 copyright: 2019 Author name here
 maintainer: example@example.com
 dependencies:
