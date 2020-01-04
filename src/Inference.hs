@@ -20,7 +20,7 @@ infer expr = case evalState (inferUtil Map.empty expr) 0 of
 
 inferUtil :: Context -> Expr -> TI (Either String (Substitution, Type))
 inferUtil ctx (EVar var) = case Map.lookup var ctx of
-    Nothing -> error $ "Unbound variable: " ++ show var
+    Nothing -> pure $ Left $ "Unbound variable: " ++ show var
     Just ty -> pure $ pure (Map.empty, ty)
 
 inferUtil ctx (ELam arg body) = do
@@ -81,9 +81,10 @@ freeTypeVars (TVar var   ) = Set.singleton var
 freeTypeVars (arg :-> res) = Set.union (freeTypeVars arg) (freeTypeVars res)
 
 showPrettyVar :: Int -> String
-showPrettyVar n | n < 0     = ""
-                | n < len   = [alphabet !! n]
-                | otherwise = alphabet !! n : showPrettyVar (n `div` len)
+showPrettyVar n
+    | n < 0     = ""
+    | n < len   = [alphabet !! n]
+    | otherwise = alphabet !! (n `rem` len) : showPrettyVar (n `div` len)
   where
-    alphabet = ['a', 'b' ..]
+    alphabet = ['A', 'B' .. 'Z']
     len      = length alphabet
