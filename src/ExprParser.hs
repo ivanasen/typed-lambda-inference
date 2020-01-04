@@ -44,7 +44,13 @@ parseFromTokens (TLambda : xs) = do
     pure $ newMultiArgumentLam args remExpr
 parseFromTokens (TVar fun : xs) = do
     body <- parseFromTokens xs
-    pure $ EApp (EVar fun) body
+    case body of
+        app@(EApp bodyFun bodyArg) -> if head xs == TOpeningBracket
+            then pure $ EApp funVar app
+            else pure $ EApp (EApp funVar bodyFun) bodyArg
+        varOrLam -> pure $ EApp funVar varOrLam
+    where funVar = EVar fun
+
 parseFromTokens (TOpeningBracket : xs) = do
     (left, right) <- splitOnMatchingBracket xs
     parsedLeft    <- parseFromTokens left
