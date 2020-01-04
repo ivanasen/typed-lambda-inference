@@ -2,7 +2,6 @@ module InferenceTypes
     ( TI
     , Expr(..)
     , Type(..)
-    , Scheme(..)
     , Context
     , newMultiArgumentLam
     )
@@ -37,10 +36,7 @@ instance Show Type where
     show (TVar var   ) = var
     show (arg :-> res) = "(" ++ show arg ++ " -> " ++ show res ++ ")"
 
-data Scheme = Scheme [String] Type
-    deriving (Eq)
-
-type Context = Map String Scheme
+type Context = Map String Type
 
 newMultiArgumentLam :: [String] -> Expr -> Expr
 newMultiArgumentLam [arg] body = ELam arg body

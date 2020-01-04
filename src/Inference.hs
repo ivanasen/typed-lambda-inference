@@ -19,13 +19,11 @@ infer expr = snd $ evalState (inferUtil Map.empty expr) 0
 inferUtil :: Context -> Expr -> TI (Substitution, Type)
 inferUtil ctx (EVar var) = case Map.lookup var ctx of
     Nothing     -> error $ "Unbound variable: " ++ show var
-    Just scheme -> do
-        ty <- instantiate scheme
-        pure (Map.empty, ty)
+    Just ty -> pure (Map.empty, ty)
 
 inferUtil ctx (ELam arg body) = do
     tyArg <- newTyVar
-    let tmpCtx = Map.insert arg (Scheme [] tyArg) ctx
+    let tmpCtx = Map.insert arg tyArg ctx
     (s1, tyBody) <- inferUtil tmpCtx body
     pure (s1, applySubstToType s1 tyArg :-> tyBody)
 
@@ -42,12 +40,6 @@ newTyVar = do
     s <- get
     put (s + 1)
     pure (TVar $ show s)
-
-instantiate :: Scheme -> TI Type
-instantiate (Scheme vars ty) = do
-    newVars <- traverse (const newTyVar) vars
-    let subst = Map.fromList (zip vars newVars)
-    pure (applySubstToType subst ty)
 
 unify :: Type -> Type -> TI Substitution
 unify (arg1 :-> res1) (arg2 :-> res2) = do
