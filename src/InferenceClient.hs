@@ -11,14 +11,22 @@ import           InferenceTypes                 ( Expr
 import           Inference                      ( infer )
 import           ExprParser                     ( parse )
 
-parseAndInfer :: String -> Maybe (Expr, Type)
+import           Data.Either                    ( Either )
+
+parseAndInfer :: String -> Either String (Expr, Type)
 parseAndInfer s = do
-    expr <- parse s
-    pure (expr, infer expr)
+    expr    <- parse s
+    infered <- infer expr
+    pure (expr, infered)
+
+outputPrefix :: String
+outputPrefix = "> "
 
 runClient :: IO ()
 runClient = forever $ do
     term <- getLine
     case parseAndInfer term of
-        Nothing        -> putStrLn "Invalid lambda expression"
-        Just (expr, t) -> putStrLn $ show expr ++ ": " ++ show t
+        Left err -> putStrLn $ outputPrefix ++ "Error: " ++ err
+        Right (expr, t) ->
+            putStrLn $ outputPrefix ++ show expr ++ ": " ++ show t
+    putStrLn ""

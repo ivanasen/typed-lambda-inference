@@ -35,8 +35,8 @@ tokenize (x : xs)
     | isSpace x                  = tokenize xs
     | otherwise                  = TVar [x] : tokenize xs
 
-parseFromTokens :: [Token] -> Maybe Expr
-parseFromTokens []             = Nothing
+parseFromTokens :: [Token] -> Either String Expr
+parseFromTokens []             = Left "Empty expression"
 parseFromTokens [TVar var    ] = pure $ EVar var
 parseFromTokens (TLambda : xs) = do
     (remaining, args) <- extractArgs xs
@@ -53,16 +53,16 @@ parseFromTokens (TOpeningBracket : xs) = do
         else do
             parsedRight <- parseFromTokens right
             pure $ EApp parsedLeft parsedRight
-parseFromTokens _ = Nothing
+parseFromTokens _ = Left "Invalid expression"
 
-extractArgs :: [Token] -> Maybe ([Token], [String])
+extractArgs :: [Token] -> Either String ([Token], [String])
 extractArgs (TDot     : xs) = pure (xs, [])
 extractArgs (TVar var : xs) = do
     (remaining, args) <- extractArgs xs
     pure (remaining, var : args)
-extractArgs _ = Nothing
+extractArgs _ = Left "Only variables are allowed in argument list."
 
-parse :: String -> Maybe Expr
+parse :: String -> Either String Expr
 parse = parseFromTokens . tokenize
 
 areValidBrackets :: [Token] -> Bool
@@ -76,12 +76,15 @@ areValidBracketsUtil s (TClosingBracket : xs)
     | otherwise = areValidBracketsUtil (s - 1) xs
 areValidBracketsUtil s (_ : tokens) = areValidBracketsUtil s tokens
 
-splitOnMatchingBracket :: [Token] -> Maybe ([Token], [Token])
+splitOnMatchingBracket :: [Token] -> Either String ([Token], [Token])
 splitOnMatchingBracket = splitOnMatchingBracketUtil 1 []
 
 splitOnMatchingBracketUtil
-    :: Int -> [Token] -> [Token] -> Maybe ([Token], [Token])
-splitOnMatchingBracketUtil s acc [] = pure (acc, [])
+    :: Int -> [Token] -> [Token] -> Either String ([Token], [Token])
+splitOnMatchingBracketUtil s acc [] | s > 0     = Left "Invalid brackets"
+                                    | otherwise = pure (acc, [])
+splitOnMatchingBracketUtil s acc (TOpeningBracket : TClosingBracket : xs) =
+    Left "Empty expression in brackets"
 splitOnMatchingBracketUtil s acc (TOpeningBracket : xs) =
     splitOnMatchingBracketUtil (s + 1) (acc ++ [TOpeningBracket]) xs
 splitOnMatchingBracketUtil 1 acc (TClosingBracket : xs) = pure (acc, xs)
