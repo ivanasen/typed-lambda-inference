@@ -13,9 +13,6 @@ import           Data.Maybe                     ( fromMaybe )
 import           InferenceTypes
 import           Substitution
 
--- infer :: Expr -> Type
--- infer expr = snd $ evalState (inferUtil Map.empty expr) 0
-
 infer :: Expr -> Either String Type
 infer expr = case evalState (inferUtil Map.empty expr) 0 of
     Left  err     -> Left err
@@ -26,12 +23,6 @@ inferUtil ctx (EVar var) = case Map.lookup var ctx of
     Nothing -> error $ "Unbound variable: " ++ show var
     Just ty -> pure $ pure (Map.empty, ty)
 
--- inferUtil ctx (ELam arg body) = do
---     tyArg <- newTyVar
---     let tmpCtx = Map.insert arg tyArg ctx
---     (s1, tyBody) <- inferUtil tmpCtx body
---     pure (s1, applySubstToType s1 tyArg :-> tyBody)
-
 inferUtil ctx (ELam arg body) = do
     tyArg <- newTyVar
     let tmpCtx = Map.insert arg tyArg ctx
@@ -40,14 +31,6 @@ inferUtil ctx (ELam arg body) = do
         Right (s1, tyBody) ->
             pure $ pure (s1, applySubstToType s1 tyArg :-> tyBody)
         Left err -> pure $ Left err
-
--- inferUtil ctx (EApp fun arg) = do
---     tyRes       <- newTyVar
---     (s1, tyFun) <- inferUtil ctx fun
---     (s2, tyArg) <- inferUtil (applySubstToContext s1 ctx) arg
---     s3          <- unify (applySubstToType s2 tyFun) (tyArg :-> tyRes)
---     let subst = composeSubst s3 $ composeSubst s2 s1
---     pure (subst, applySubstToType s3 tyRes)
 
 inferUtil ctx (EApp fun arg) = do
     tyRes    <- newTyVar
@@ -71,15 +54,6 @@ newTyVar = do
     s <- get
     put (s + 1)
     pure (TVar $ showPrettyVar s)
-
--- unify :: Type -> Type -> TI Substitution
--- unify (arg1 :-> res1) (arg2 :-> res2) = do
---     s1 <- unify arg1 arg2
---     s2 <- unify (applySubstToType s1 res1) (applySubstToType s1 res2)
---     pure (composeSubst s1 s2)
--- unify (TVar var) t          = varBind var t
--- unify t          (TVar var) = varBind var t
-
 
 unify :: Type -> Type -> TI (Either String Substitution)
 unify (arg1 :-> res1) (arg2 :-> res2) = do
