@@ -24,6 +24,8 @@ tokenize (x : xs)
     | isSpace x                  = tokenize xs
     | otherwise                  = TVar [x] : tokenize xs
 
+-- | parseFromTokens accepts a list of expression tokes
+-- and tries to parse them returning either an error or a parsed expression
 parseFromTokens :: [Token] -> Either String Expr
 parseFromTokens []             = Left "Empty expression"
 parseFromTokens [TVar var    ] = pure $ EVar var
@@ -36,7 +38,7 @@ parseFromTokens (TLambda : xs) = do
             pure $ newMultiArgumentLambda args remExpr
 parseFromTokens xs = case last xs of
     (TVar var) -> do
-        (left, right) <- splitOnLeftMostRightLambda xs
+        (left, right) <- splitOnRightLambda xs
         case left of
             [] -> do
                 body <- parseFromTokens $ init xs
@@ -46,7 +48,7 @@ parseFromTokens xs = case last xs of
                 leftParsed  <- parseFromTokens left
                 pure $ EApp leftParsed rightParsed
     TClosingBracket -> do
-        (left, right) <- splitOnMatchingBracket (init xs)
+        (left, right) <- splitOnMatchingLeftBracket (init xs)
         case left of
             [] -> parseFromTokens right
             _  -> case right of
@@ -67,38 +69,42 @@ extractArgs (TVar var : xs) = do
     pure (remaining, var : args)
 extractArgs _ = Left "Only variables are allowed in argument list."
 
-splitOnMatchingBracket :: [Token] -> Either String ([Token], [Token])
-splitOnMatchingBracket = splitOnMatchingBracketUtil 1 []
+splitOnMatchingLeftBracket :: [Token] -> Either String ([Token], [Token])
+splitOnMatchingLeftBracket = splitOnMatchingLeftBracketUtil 1 []
 
-splitOnMatchingBracketUtil
+splitOnMatchingLeftBracketUtil
     :: Int -> [Token] -> [Token] -> Either String ([Token], [Token])
-splitOnMatchingBracketUtil s acc tokens
+splitOnMatchingLeftBracketUtil s acc tokens
     | null tokens && s > 0 = Left "Invalid brackets"
     | null tokens = pure ([], acc)
-    | lt == TClosingBracket = splitOnMatchingBracketUtil (s + 1)
+    | lt == TClosingBracket = splitOnMatchingLeftBracketUtil (s + 1)
                                                          (lt : acc)
                                                          (init tokens)
     | lt == TOpeningBracket && s == 1 = pure (init tokens, acc)
-    | lt == TOpeningBracket = splitOnMatchingBracketUtil (s - 1)
+    | lt == TOpeningBracket = splitOnMatchingLeftBracketUtil (s - 1)
                                                          (lt : acc)
                                                          (init tokens)
-    | otherwise = splitOnMatchingBracketUtil s (lt : acc) (init tokens)
+    | otherwise = splitOnMatchingLeftBracketUtil s (lt : acc) (init tokens)
     where lt = last tokens
 
-splitOnLeftMostRightLambda :: [Token] -> Either String ([Token], [Token])
-splitOnLeftMostRightLambda = splitOnLeftMostRightLambdaUtil 0 []
+-- | splitOnLeftMostLambda takes a list of tokens
+-- and if the expression they make is of the type e1 e2
+-- where e2 is a lambda and e1 is a non empty expression
+-- it splits it to (e1, e2)
+splitOnRightLambda :: [Token] -> Either String ([Token], [Token])
+splitOnRightLambda = splitOnRightLambdaUtil 0 []
 
-splitOnLeftMostRightLambdaUtil
+splitOnRightLambdaUtil
     :: Int -> [Token] -> [Token] -> Either String ([Token], [Token])
-splitOnLeftMostRightLambdaUtil s acc tokens
+splitOnRightLambdaUtil s acc tokens
     | null tokens = pure (tokens, acc)
     | lt == TLambda && s == 0 = pure (init tokens, lt : acc)
-    | lt == TClosingBracket = splitOnLeftMostRightLambdaUtil (s + 1)
+    | lt == TClosingBracket = splitOnRightLambdaUtil (s + 1)
                                                              (lt : acc)
                                                              (init tokens)
     | lt == TOpeningBracket && s == 0 = Left "Invalid brackets"
-    | lt == TOpeningBracket = splitOnLeftMostRightLambdaUtil (s - 1)
+    | lt == TOpeningBracket = splitOnRightLambdaUtil (s - 1)
                                                              (lt : acc)
                                                              (init tokens)
-    | otherwise = splitOnLeftMostRightLambdaUtil s (lt : acc) (init tokens)
+    | otherwise = splitOnRightLambdaUtil s (lt : acc) (init tokens)
     where lt = last tokens
