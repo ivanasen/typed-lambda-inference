@@ -479,3 +479,5 @@ Variable not in scope: parseAndInfer :: [Char] -> t
 
 2020-01-05 10:24:51 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
 
+2020-01-05 13:10:42 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+

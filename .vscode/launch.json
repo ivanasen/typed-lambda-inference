@@ -10,7 +10,7 @@
             "name": "haskell-debug-adapter",
             "internalConsoleOptions": "openOnSessionStart",
             "workspace": "${workspaceRoot}",
-            "startup": "/home/ivanasen/Code/Projects/typed-lambda-inference/src/ExprParser.hs",
+            "startup": "/home/ivanasen/Code/Projects/typed-lambda-inference/src/Parser.hs",
             "startupFunc": "parseFromTokens",
             "startupArgs": "[TLambda, (TVar \"x\"), (TVar \"y\"), (TVar \"z\"), TDot, (TVar \"x\"), TOpeningBracket, (TVar \"y\"), (TVar \"z\"), TClosingBracket]",
             "stopOnEntry": true,

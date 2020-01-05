@@ -8,7 +8,7 @@ import           Test.HUnit
 import           InferenceTypes                 ( Expr(..)
                                                 , Type(..)
                                                 )
-import           Inference                      ( infer
+import           Inference                      ( inferType
                                                 , showPrettyVar
                                                 )
 
@@ -18,12 +18,12 @@ testList =
     TestList [positiveInferTests, negativeInferTests, showPrettyVarTests]
 
 positiveInferTests =
-    TestLabel "infer_WhenPassedValidTypeExpression_ReturnsCorrectType"
+    TestLabel "inferType_WhenPassedValidTypeExpression_ReturnsCorrectType"
         $ TestList
               [ TestCase
                   (assertEqual "\\x.x: A -> A"
                                (pure $ TVar "A" :-> TVar "A")
-                               (infer (ELam "x" $ EVar "x"))
+                               (inferType (ELam "x" $ EVar "x"))
                   )
               , TestCase
                   (assertEqual
@@ -34,7 +34,7 @@ positiveInferTests =
                       :-> TVar "C"
                       :-> TVar "D"
                       )
-                      (infer
+                      (inferType
                           (ELam "x" $ ELam "y" $ ELam "z" $ EApp
                               (EApp (EVar "x") (EVar "y"))
                               (EVar "z")
@@ -45,36 +45,42 @@ positiveInferTests =
                   (assertEqual
                       "\\fx.fx: (B -> C) -> B -> C"
                       (pure $ (TVar "B" :-> TVar "C") :-> TVar "B" :-> TVar "C")
-                      (infer $ ELam "f" $ ELam "x" $ EApp (EVar "f") (EVar "x"))
+                      (inferType $ ELam "f" $ ELam "x" $ EApp (EVar "f")
+                                                              (EVar "x")
+                      )
                   )
               ]
 
 negativeInferTests =
-    TestLabel "infer_WhenPassedInvalidTypeExpression_ReturnsError" $ TestList
-        [ TestCase
-            (assertError
-                "\\x.xx is a recursive expresion which isn't supported by Simply typed lambda calculus"
-                (infer $ ELam "x" $ EApp (EVar "x") (EVar "x"))
-            )
-        , TestCase
-            (assertError
-                "\\xy.xyx is a recursive expresion which isn't supported by Simply typed lambda calculus"
-                (infer
-                    (ELam "x" $ ELam "y" $ EApp (EApp (EVar "x") (EVar "y"))
-                                                (EVar "x")
-                    )
-                )
-            )
-        , TestCase
-            (assertError "\\x.y has an unbound variable"
-                         (infer $ ELam "x" $ EVar "y")
-            )
-        , TestCase
-            (assertError
-                "\\xy.xa has an unbound variable 'a'"
-                (infer $ ELam "x" $ ELam "y" $ EApp (EVar "x") (EVar "a"))
-            )
-        ]
+    TestLabel "inferType_WhenPassedInvalidTypeExpression_ReturnsError"
+        $ TestList
+              [ TestCase
+                  (assertError
+                      "\\x.xx is a recursive expresion which isn't supported by Simply typed lambda calculus"
+                      (inferType $ ELam "x" $ EApp (EVar "x") (EVar "x"))
+                  )
+              , TestCase
+                  (assertError
+                      "\\xy.xyx is a recursive expresion which isn't supported by Simply typed lambda calculus"
+                      (inferType
+                          (ELam "x" $ ELam "y" $ EApp
+                              (EApp (EVar "x") (EVar "y"))
+                              (EVar "x")
+                          )
+                      )
+                  )
+              , TestCase
+                  (assertError "\\x.y has an unbound variable"
+                               (inferType $ ELam "x" $ EVar "y")
+                  )
+              , TestCase
+                  (assertError
+                      "\\xy.xa has an unbound variable 'a'"
+                      (inferType $ ELam "x" $ ELam "y" $ EApp (EVar "x")
+                                                              (EVar "a")
+                      )
+                  )
+              ]
 
 showPrettyVarTests =
     TestLabel "showPrettyVar_WhenPassedANumber_ReturnsCorrectVariableName"

@@ -1,4 +1,4 @@
-module ExprParserTests
+module ParserTests
     ( testList
     )
 where
@@ -7,7 +7,7 @@ import           Test.HUnit
 
 import           InferenceTypes
 import           Inference
-import           ExprParser
+import           Parser
 
 import           TestUtils                      ( assertError )
 
@@ -98,6 +98,14 @@ positiveTests =
                     )
             $ parse "(\\xy.xy) (\\x.x) (\\y.y)"
             )
+        , TestCase
+            (assertEqual
+                "works with application on lambdas at the end"
+                (pure $ EApp
+                    (ELam "x" $ EVar "x")
+                    (ELam "x" $ EVar "x"))
+                (parse "(\\x.x) \\x.x")
+            )
         ]
 
 
@@ -133,11 +141,6 @@ negativeTests =
             )
         , TestCase (assertError "empty brackets" (parse "\\xyz.()xyz"))
         , TestCase (assertError "empty brackets" (parse "\\xyz.((x()y()z))"))
-        , TestCase
-            (assertError
-                "lambdas should be in brackets when there is an application"
-                (parse "(\\x.x) \\x.x")
-            )
         , TestCase (assertError "empty string" (parse ""))
         ]
 

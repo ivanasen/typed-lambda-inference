@@ -22,6 +22,8 @@ applySubstToType subst ty = case ty of
 applySubstToContext :: Substitution -> Context -> Context
 applySubstToContext subst = Map.map (applySubstToType subst)
 
+-- | composeSubst takes two substitutions s1 and s2 and returns s3
+-- such that s3(a) = s1(s2(a)), where a is a Type or Context
 composeSubst :: Substitution -> Substitution -> Substitution
 composeSubst s1 s2 = Map.union (Map.map (applySubstToType s1) s2) s1
 

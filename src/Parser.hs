@@ -1,4 +1,4 @@
-module ExprParser
+module Parser
     ( tokenize
     , parse
     , Token(TDot, TVar, TOpeningBracket, TClosingBracket, TLambda)
@@ -10,7 +10,7 @@ import qualified Data.Map                      as Map
 import           Data.Char                      ( isSpace )
 
 import           InferenceTypes                 ( Expr(..)
-                                                , newMultiArgumentLam
+                                                , newMultiArgumentLambda
                                                 )
 
 data Token
@@ -28,12 +28,34 @@ tokensToTypes = Map.fromList
     , ('.' , TDot)
     ]
 
-tokenize :: String -> [Token]
-tokenize [] = []
-tokenize (x : xs)
-    | Map.member x tokensToTypes = tokensToTypes Map.! x : tokenize xs
-    | isSpace x                  = tokenize xs
-    | otherwise                  = TVar [x] : tokenize xs
+parse :: String -> Either String Expr
+parse = parseFromTokens . tokenize
+
+-- parseFromTokens :: [Token] -> Either String Expr
+-- parseFromTokens []             = Left "Empty expression"
+-- parseFromTokens [TVar var    ] = pure $ EVar var
+-- parseFromTokens (TLambda : xs) = do
+--     (remaining, args) <- extractArgs xs
+--     case args of
+--         [] -> Left "Empty argument list in lambda"
+--         _  -> do
+--             remExpr <- parseFromTokens remaining
+--             pure $ newMultiArgumentLambda args remExpr
+-- parseFromTokens xs = case last xs of
+--     (TVar var) -> do
+--         body <- parseFromTokens $ init xs
+--         pure $ EApp body (EVar var)
+--     TClosingBracket -> do
+--         (left, right) <- splitOnMatchingLeftBracket (init xs)
+--         case left of
+--             [] -> parseFromTokens right
+--             _  -> case right of
+--                 [] -> Left "Empty expression in brackets"
+--                 _  -> do
+--                     parsedLeft  <- parseFromTokens left
+--                     parsedRight <- parseFromTokens right
+--                     pure $ EApp parsedLeft parsedRight
+--     _ -> Left "Invalid expression"
 
 parseFromTokens :: [Token] -> Either String Expr
 parseFromTokens []             = Left "Empty expression"
@@ -44,11 +66,18 @@ parseFromTokens (TLambda : xs) = do
         [] -> Left "Empty argument list in lambda"
         _  -> do
             remExpr <- parseFromTokens remaining
-            pure $ newMultiArgumentLam args remExpr
+            pure $ newMultiArgumentLambda args remExpr
 parseFromTokens xs = case last xs of
     (TVar var) -> do
-        body <- parseFromTokens $ init xs
-        pure $ EApp body (EVar var)
+        (left, right) <- splitOnLeftMostRightLambda xs
+        case left of
+            [] -> do
+                body <- parseFromTokens $ init xs
+                pure $ EApp body (EVar var)
+            _ -> do
+                rightParsed <- parseFromTokens right
+                leftParsed  <- parseFromTokens left
+                pure $ EApp leftParsed rightParsed
     TClosingBracket -> do
         (left, right) <- splitOnMatchingLeftBracket (init xs)
         case left of
@@ -62,27 +91,22 @@ parseFromTokens xs = case last xs of
     _ -> Left "Invalid expression"
 
 
+tokenize :: String -> [Token]
+tokenize [] = []
+tokenize (x : xs)
+    | Map.member x tokensToTypes = tokensToTypes Map.! x : tokenize xs
+    | isSpace x                  = tokenize xs
+    | otherwise                  = TVar [x] : tokenize xs
 
+-- | extractArgs extracts all variable tokens
+-- until a "." is encountered
+-- or if something else is encountered returns an error
 extractArgs :: [Token] -> Either String ([Token], [String])
 extractArgs (TDot     : xs) = pure (xs, [])
 extractArgs (TVar var : xs) = do
     (remaining, args) <- extractArgs xs
     pure (remaining, var : args)
 extractArgs _ = Left "Only variables are allowed in argument list."
-
-parse :: String -> Either String Expr
-parse = parseFromTokens . tokenize
-
-areValidBrackets :: [Token] -> Bool
-areValidBrackets = areValidBracketsUtil 0
-
-areValidBracketsUtil :: Int -> [Token] -> Bool
-areValidBracketsUtil _ []                     = True
-areValidBracketsUtil s (TOpeningBracket : xs) = areValidBracketsUtil (s + 1) xs
-areValidBracketsUtil s (TClosingBracket : xs)
-    | s == 0    = False
-    | otherwise = areValidBracketsUtil (s - 1) xs
-areValidBracketsUtil s (_ : tokens) = areValidBracketsUtil s tokens
 
 splitOnMatchingBracket :: [Token] -> Either String ([Token], [Token])
 splitOnMatchingBracket = splitOnMatchingBracketUtil 1 []
@@ -114,3 +138,21 @@ swapBrackets :: Token -> Token
 swapBrackets TOpeningBracket = TClosingBracket
 swapBrackets TClosingBracket = TOpeningBracket
 swapBrackets t               = t
+
+splitOnLeftMostRightLambda :: [Token] -> Either String ([Token], [Token])
+splitOnLeftMostRightLambda = splitOnLeftMostRightLambdaUtil 0 []
+
+splitOnLeftMostRightLambdaUtil
+    :: Int -> [Token] -> [Token] -> Either String ([Token], [Token])
+splitOnLeftMostRightLambdaUtil s acc tokens
+    | null tokens = pure (tokens, acc)
+    | lt == TLambda && s == 0 = pure (init tokens, lt : acc)
+    | lt == TClosingBracket = splitOnLeftMostRightLambdaUtil (s + 1)
+                                                             (lt : acc)
+                                                             (init tokens)
+    | lt == TOpeningBracket && s == 0 = Left "Invalid brackets"
+    | lt == TOpeningBracket = splitOnLeftMostRightLambdaUtil (s - 1)
+                                                             (lt : acc)
+                                                             (init tokens)
+    | otherwise = splitOnLeftMostRightLambdaUtil s (lt : acc) (init tokens)
+    where lt = last tokens

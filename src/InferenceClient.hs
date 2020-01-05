@@ -8,16 +8,16 @@ import           Control.Monad                  ( forever )
 import           InferenceTypes                 ( Expr
                                                 , Type
                                                 )
-import           Inference                      ( infer )
-import           ExprParser                     ( parse )
+import           Inference                      ( inferType )
+import           Parser                     ( parse )
 
 import           Data.Either                    ( Either )
 
 parseAndInfer :: String -> Either String (Expr, Type)
 parseAndInfer s = do
     expr    <- parse s
-    infered <- infer expr
-    pure (expr, infered)
+    inferred <- inferType expr
+    pure (expr, inferred)
 
 outputPrefix :: String
 outputPrefix = "> "

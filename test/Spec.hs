@@ -1,9 +1,9 @@
 import           Test.HUnit
 
 import qualified InferenceTests
-import qualified ExprParserTests
+import qualified ParserTests
 
-testList = TestList [InferenceTests.testList, ExprParserTests.testList]
+testList = TestList [InferenceTests.testList, ParserTests.testList]
 
 main :: IO ()
 main = do

@@ -1,5 +1,5 @@
 module Inference
-    ( infer
+    ( inferType
     , showPrettyVar
     )
 where
@@ -14,32 +14,33 @@ import           Data.Maybe                     ( fromMaybe )
 import           InferenceTypes
 import           Substitution
 
-infer :: Expr -> Either String Type
-infer expr = case evalState (inferUtil Map.empty expr) 0 of
+inferType :: Expr -> Either String Type
+inferType expr = case evalState (inferTypeUtil Map.empty expr) 0 of
     Left  err     -> Left err
     Right (_, ty) -> pure ty
 
-inferUtil :: Context -> Expr -> TI (Either String (Substitution, Type))
-inferUtil ctx (EVar var) = case Map.lookup var ctx of
+inferTypeUtil
+    :: Context -> Expr -> VarCountState (Either String (Substitution, Type))
+inferTypeUtil ctx (EVar var) = case Map.lookup var ctx of
     Nothing -> pure $ Left $ "Unbound variable: " ++ show var
     Just ty -> pure $ pure (Map.empty, ty)
 
-inferUtil ctx (ELam arg body) = do
+inferTypeUtil ctx (ELam arg body) = do
     tyArg <- newTyVar
     let tmpCtx = Map.insert arg tyArg ctx
-    bodyRes <- inferUtil tmpCtx body
+    bodyRes <- inferTypeUtil tmpCtx body
     case bodyRes of
         Right (s1, tyBody) ->
             pure $ pure (s1, applySubstToType s1 tyArg :-> tyBody)
         Left err -> pure $ Left err
 
-inferUtil ctx (EApp fun arg) = do
+inferTypeUtil ctx (EApp fun arg) = do
     tyRes    <- newTyVar
-    tyFunRes <- inferUtil ctx fun
+    tyFunRes <- inferTypeUtil ctx fun
     case tyFunRes of
         Left  err         -> pure $ Left err
         Right (s1, tyFun) -> do
-            tyArgRes <- inferUtil (applySubstToContext s1 ctx) arg
+            tyArgRes <- inferTypeUtil (applySubstToContext s1 ctx) arg
             case tyArgRes of
                 Left  err         -> pure $ Left err
                 Right (s2, tyArg) -> do
@@ -50,13 +51,23 @@ inferUtil ctx (EApp fun arg) = do
                             pure $ pure (subst, applySubstToType s3 tyRes)
                         Left err -> pure $ Left err
 
-newTyVar :: TI Type
+newTyVar :: VarCountState Type
 newTyVar = do
     s <- get
     put (s + 1)
     pure (TVar $ showPrettyVar s)
 
-unify :: Type -> Type -> TI (Either String Substitution)
+-- | unify takes two types t1 and t2, tries to unify them
+-- and returns the substitution which needs to be applied to make the equal.
+-- unify is commutative
+-- Examples:
+--     a U b == a
+--     a U (b -> c) == (b -> c)
+--     (a -> b) U (c -> d) == (a -> b)
+--     (a -> b) U (c -> b) == (b -> b)
+--     a U (a -> a) == Error, because simply typed lambda calculus
+--         doesn't support recursive types.
+unify :: Type -> Type -> VarCountState (Either String Substitution)
 unify (arg1 :-> res1) (arg2 :-> res2) = do
     s1Res <- unify arg1 arg2
     case s1Res of
@@ -70,7 +81,7 @@ unify (TVar var) t          = varBind var t
 unify t          (TVar var) = varBind var t
 
 
-varBind :: String -> Type -> TI (Either String Substitution)
+varBind :: String -> Type -> VarCountState (Either String Substitution)
 varBind var ty
     | ty == TVar var = pure $ pure Map.empty
     | Set.member var (freeTypeVars ty) = pure
