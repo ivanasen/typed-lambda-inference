@@ -14,10 +14,16 @@ import           Data.Maybe                     ( fromMaybe )
 import           InferenceTypes
 import           Substitution
 
+initialVariableState = 0
+
+-- | inferType is the implementation of the Hindley-Milner type inference algorithm.
+-- It takes an Expression and returns Either an error or a type
+-- corresponding to that expression, according to the Simply typed lambda calculus.
 inferType :: Expr -> Either String Type
-inferType expr = case evalState (inferTypeUtil Map.empty expr) 0 of
-    Left  err     -> Left err
-    Right (_, ty) -> pure ty
+inferType expr =
+    case evalState (inferTypeUtil Map.empty expr) initialVariableState of
+        Left  err     -> Left err
+        Right (_, ty) -> pure ty
 
 inferTypeUtil
     :: Context -> Expr -> VarCountState (Either String (Substitution, Type))
@@ -51,12 +57,6 @@ inferTypeUtil ctx (EApp fun arg) = do
                             pure $ pure (subst, applySubstToType s3 tyRes)
                         Left err -> pure $ Left err
 
-newTyVar :: VarCountState Type
-newTyVar = do
-    s <- get
-    put (s + 1)
-    pure (TVar $ showPrettyVar s)
-
 -- | unify takes two types t1 and t2, tries to unify them
 -- and returns the substitution which needs to be applied to make the equal.
 -- unify is commutative
@@ -80,6 +80,11 @@ unify (arg1 :-> res1) (arg2 :-> res2) = do
 unify (TVar var) t          = varBind var t
 unify t          (TVar var) = varBind var t
 
+newTyVar :: VarCountState Type
+newTyVar = do
+    s <- get
+    put (s + 1)
+    pure (TVar $ showPrettyVar s)
 
 varBind :: String -> Type -> VarCountState (Either String Substitution)
 varBind var ty
