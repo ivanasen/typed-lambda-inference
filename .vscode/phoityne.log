@@ -328,3 +328,154 @@ parse error on input ‘.’
 
 2020-01-03 21:39:32 [ThreadId 11] ERROR phoityne - stackTraceRequestHandler failed. no stacktrace found. : Left "no stacktrace found."
 
+2020-01-05 10:11:50 [ThreadId 11] ERROR phoityne - continueRequest failed. [DAP][ERROR] error occurred while runStmt.
+Couldn't match type ‘Char’ with ‘Token’
+Expected type: [Token]
+  Actual type: [Char]
+ : Left "[DAP][ERROR] error occurred while runStmt.\nCouldn't match type \8216Char\8217 with \8216Token\8217\nExpected type: [Token]\n  Actual type: [Char]\n"
+
+2020-01-05 10:12:47 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:12:55 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:12:59 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:13:02 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. remExpr : Left "Not in scope. remExpr"
+
+2020-01-05 10:13:05 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. remaining : Left "Not in scope. remaining"
+
+2020-01-05 10:13:13 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:13:14 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:13:15 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:13:16 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:13:17 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:13:18 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:13:18 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:13:19 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:13:20 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:13:21 [ThreadId 11] ERROR phoityne - stackTraceRequestHandler failed. no stacktrace found. : Left "no stacktrace found."
+
+2020-01-05 10:14:10 [ThreadId 11] ERROR phoityne - continueRequest failed. [DAP][ERROR] error occurred while runStmt.
+Couldn't match type ‘Char’ with ‘Token’
+Expected type: [Token]
+  Actual type: [Char]
+ : Left "[DAP][ERROR] error occurred while runStmt.\nCouldn't match type \8216Char\8217 with \8216Token\8217\nExpected type: [Token]\n  Actual type: [Char]\n"
+
+2020-01-05 10:14:33 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:14:34 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:14:36 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:14:37 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:14:39 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:14:40 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:14:40 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:14:40 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:14:41 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:14:41 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:14:41 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:14:42 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:14:43 [ThreadId 11] ERROR phoityne - stackTraceRequestHandler failed. no stacktrace found. : Left "no stacktrace found."
+
+2020-01-05 10:17:22 [ThreadId 11] ERROR phoityne - setBreakpointRequest failed. [DAP][ERROR] loaded module can not find from path. </home/ivanasen/Code/Projects/typed-lambda-inference/src/ExprParser.hs> [("InferenceTypes","/home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceTypes.hs")] : Left "[DAP][ERROR] loaded module can not find from path. </home/ivanasen/Code/Projects/typed-lambda-inference/src/ExprParser.hs> [(\"InferenceTypes\",\"/home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceTypes.hs\")]"
+
+2020-01-05 10:17:22 [ThreadId 11] ERROR phoityne - set entry breakpoint failed. [ERROR] set adhoc breakpoint failed. [DAP][ERROR] loaded module can not find from path. </home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceClient.hs> [("InferenceTypes","/home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceTypes.hs")] : <<DAP>>Left "[DAP][ERROR] loaded module can not find from path. </home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceClient.hs> [(\"InferenceTypes\",\"/home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceTypes.hs\")]" : parseAndInfer : ("/home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceClient.hs",FunctionBreakpoint {nameFunctionBreakpoint = "parseAndInfer", conditionFunctionBreakpoint = Nothing, hitConditionFunctionBreakpoint = Nothing})
+2020-01-05 10:17:22 [ThreadId 11] ERROR phoityne - continueRequest failed. [DAP][ERROR] error occurred while runStmt.
+Variable not in scope: parseAndInfer :: [Char] -> t
+ : Left "[DAP][ERROR] error occurred while runStmt.\nVariable not in scope: parseAndInfer :: [Char] -> t\n"
+
+2020-01-05 10:17:35 [ThreadId 11] ERROR phoityne - setBreakpointRequest failed. [DAP][ERROR] loaded module can not find from path. </home/ivanasen/Code/Projects/typed-lambda-inference/src/ExprParser.hs> [("InferenceTypes","/home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceTypes.hs")] : Left "[DAP][ERROR] loaded module can not find from path. </home/ivanasen/Code/Projects/typed-lambda-inference/src/ExprParser.hs> [(\"InferenceTypes\",\"/home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceTypes.hs\")]"
+
+2020-01-05 10:17:35 [ThreadId 11] ERROR phoityne - set entry breakpoint failed. [ERROR] set adhoc breakpoint failed. [DAP][ERROR] loaded module can not find from path. </home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceClient.hs> [("InferenceTypes","/home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceTypes.hs")] : <<DAP>>Left "[DAP][ERROR] loaded module can not find from path. </home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceClient.hs> [(\"InferenceTypes\",\"/home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceTypes.hs\")]" : parseAndInfer : ("/home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceClient.hs",FunctionBreakpoint {nameFunctionBreakpoint = "parseAndInfer", conditionFunctionBreakpoint = Nothing, hitConditionFunctionBreakpoint = Nothing})
+2020-01-05 10:17:35 [ThreadId 11] ERROR phoityne - continueRequest failed. [DAP][ERROR] error occurred while runStmt.
+Variable not in scope: parseAndInfer :: [Char] -> t
+ : Left "[DAP][ERROR] error occurred while runStmt.\nVariable not in scope: parseAndInfer :: [Char] -> t\n"
+
+2020-01-05 10:17:46 [ThreadId 11] ERROR phoityne - setBreakpointRequest failed. [DAP][ERROR] loaded module can not find from path. </home/ivanasen/Code/Projects/typed-lambda-inference/src/ExprParser.hs> [("InferenceTypes","/home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceTypes.hs")] : Left "[DAP][ERROR] loaded module can not find from path. </home/ivanasen/Code/Projects/typed-lambda-inference/src/ExprParser.hs> [(\"InferenceTypes\",\"/home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceTypes.hs\")]"
+
+2020-01-05 10:17:46 [ThreadId 11] ERROR phoityne - set entry breakpoint failed. [ERROR] set adhoc breakpoint failed. [DAP][ERROR] loaded module can not find from path. </home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceClient.hs> [("InferenceTypes","/home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceTypes.hs")] : <<DAP>>Left "[DAP][ERROR] loaded module can not find from path. </home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceClient.hs> [(\"InferenceTypes\",\"/home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceTypes.hs\")]" : parseAndInfer : ("/home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceClient.hs",FunctionBreakpoint {nameFunctionBreakpoint = "parseAndInfer", conditionFunctionBreakpoint = Nothing, hitConditionFunctionBreakpoint = Nothing})
+2020-01-05 10:17:46 [ThreadId 11] ERROR phoityne - continueRequest failed. [DAP][ERROR] error occurred while runStmt.
+Variable not in scope: parseAndInfer :: [Char] -> t
+ : Left "[DAP][ERROR] error occurred while runStmt.\nVariable not in scope: parseAndInfer :: [Char] -> t\n"
+
+2020-01-05 10:18:12 [ThreadId 11] ERROR phoityne - setBreakpointRequest failed. [DAP][ERROR] loaded module can not find from path. </home/ivanasen/Code/Projects/typed-lambda-inference/src/ExprParser.hs> [("InferenceTypes","/home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceTypes.hs")] : Left "[DAP][ERROR] loaded module can not find from path. </home/ivanasen/Code/Projects/typed-lambda-inference/src/ExprParser.hs> [(\"InferenceTypes\",\"/home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceTypes.hs\")]"
+
+2020-01-05 10:18:12 [ThreadId 11] ERROR phoityne - set entry breakpoint failed. [ERROR] set adhoc breakpoint failed. [DAP][ERROR] loaded module can not find from path. </home/ivanasen/Code/Projects/typed-lambda-inference/src/ExprParser.hs> [("InferenceTypes","/home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceTypes.hs")] : <<DAP>>Left "[DAP][ERROR] loaded module can not find from path. </home/ivanasen/Code/Projects/typed-lambda-inference/src/ExprParser.hs> [(\"InferenceTypes\",\"/home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceTypes.hs\")]" : parse : ("/home/ivanasen/Code/Projects/typed-lambda-inference/src/ExprParser.hs",FunctionBreakpoint {nameFunctionBreakpoint = "parse", conditionFunctionBreakpoint = Nothing, hitConditionFunctionBreakpoint = Nothing})
+2020-01-05 10:18:12 [ThreadId 11] ERROR phoityne - continueRequest failed. [DAP][ERROR] error occurred while runStmt.
+Variable not in scope: parse :: [Char] -> t
+ : Left "[DAP][ERROR] error occurred while runStmt.\nVariable not in scope: parse :: [Char] -> t\n"
+
+2020-01-05 10:18:51 [ThreadId 11] ERROR phoityne - setBreakpointRequest failed. [DAP][ERROR] loaded module can not find from path. </home/ivanasen/Code/Projects/typed-lambda-inference/src/ExprParser.hs> [("InferenceTypes","/home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceTypes.hs")] : Left "[DAP][ERROR] loaded module can not find from path. </home/ivanasen/Code/Projects/typed-lambda-inference/src/ExprParser.hs> [(\"InferenceTypes\",\"/home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceTypes.hs\")]"
+
+2020-01-05 10:18:51 [ThreadId 11] ERROR phoityne - set entry breakpoint failed. [ERROR] set adhoc breakpoint failed. [DAP][ERROR] loaded module can not find from path. </home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceClient.hs> [("InferenceTypes","/home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceTypes.hs")] : <<DAP>>Left "[DAP][ERROR] loaded module can not find from path. </home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceClient.hs> [(\"InferenceTypes\",\"/home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceTypes.hs\")]" : parseAndInfer : ("/home/ivanasen/Code/Projects/typed-lambda-inference/src/InferenceClient.hs",FunctionBreakpoint {nameFunctionBreakpoint = "parseAndInfer", conditionFunctionBreakpoint = Nothing, hitConditionFunctionBreakpoint = Nothing})
+2020-01-05 10:18:51 [ThreadId 11] ERROR phoityne - continueRequest failed. [DAP][ERROR] error occurred while runStmt.
+Variable not in scope: parseAndInfer :: [Char] -> t
+ : Left "[DAP][ERROR] error occurred while runStmt.\nVariable not in scope: parseAndInfer :: [Char] -> t\n"
+
+2020-01-05 10:19:10 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:19:40 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:19:44 [ThreadId 11] ERROR phoityne - stackTraceRequestHandler failed. no stacktrace found. : Left "no stacktrace found."
+
+2020-01-05 10:20:08 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:20:14 [ThreadId 11] ERROR phoityne - stackTraceRequestHandler failed. no stacktrace found. : Left "no stacktrace found."
+
+2020-01-05 10:21:09 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:22:24 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:22:36 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:22:37 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:22:45 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:23:00 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:23:01 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:23:07 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:23:09 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:23:09 [ThreadId 11] ERROR phoityne - stackTraceRequestHandler failed. no stacktrace found. : Left "no stacktrace found."
+
+2020-01-05 10:24:31 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:24:32 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:24:33 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:24:34 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:24:36 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:24:36 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:24:38 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:24:39 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+
+2020-01-05 10:24:51 [ThreadId 11] ERROR phoityne - evaluateRequestHandlerDAP failed. Not in scope. tyFun : Left "Not in scope. tyFun"
+

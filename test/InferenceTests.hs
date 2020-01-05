@@ -12,12 +12,10 @@ import           Inference                      ( infer
                                                 , showPrettyVar
                                                 )
 
+import           TestUtils                      ( assertError )
+
 testList =
     TestList [positiveInferTests, negativeInferTests, showPrettyVarTests]
-
-isError :: Either a b -> Bool
-isError (Left _) = True
-isError _        = False
 
 positiveInferTests =
     TestLabel "infer_WhenPassedValidTypeExpression_ReturnsCorrectType"
@@ -54,31 +52,27 @@ positiveInferTests =
 negativeInferTests =
     TestLabel "infer_WhenPassedInvalidTypeExpression_ReturnsError" $ TestList
         [ TestCase
-            (assertBool
+            (assertError
                 "\\x.xx is a recursive expresion which isn't supported by Simply typed lambda calculus"
-                (isError $ infer $ ELam "x" $ EApp (EVar "x") (EVar "x"))
+                (infer $ ELam "x" $ EApp (EVar "x") (EVar "x"))
             )
         , TestCase
-            (assertBool
+            (assertError
                 "\\xy.xyx is a recursive expresion which isn't supported by Simply typed lambda calculus"
-                ( isError
-                $ infer
-                      (ELam "x" $ ELam "y" $ EApp
-                          (EApp (EVar "x") (EVar "y"))
-                          (EVar "x")
-                      )
+                (infer
+                    (ELam "x" $ ELam "y" $ EApp (EApp (EVar "x") (EVar "y"))
+                                                (EVar "x")
+                    )
                 )
             )
         , TestCase
-            (assertBool "\\x.y has an unbound variable"
-                        (isError $ infer $ ELam "x" $ EVar "y")
+            (assertError "\\x.y has an unbound variable"
+                         (infer $ ELam "x" $ EVar "y")
             )
         , TestCase
-            (assertBool
+            (assertError
                 "\\xy.xa has an unbound variable 'a'"
-                (isError $ infer $ ELam "x" $ ELam "y" $ EApp (EVar "x")
-                                                              (EVar "a")
-                )
+                (infer $ ELam "x" $ ELam "y" $ EApp (EVar "x") (EVar "a"))
             )
         ]
 

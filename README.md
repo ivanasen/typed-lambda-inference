@@ -23,7 +23,7 @@ The lambda expressions which the REPL can accept and infer are described by the 
 
 ```Haskell
 E ::= V         -- Variable
-    | \A.E      -- Abstraction
+    | (\A.E)      -- Abstraction
     | E E       -- Application
     | (E)
 

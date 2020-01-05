@@ -2,7 +2,6 @@ module ExprParser
     ( tokenize
     , parse
     , Token(TDot, TVar, TOpeningBracket, TClosingBracket, TLambda)
-    , reverseAssociativity
     )
 where
 
@@ -41,26 +40,28 @@ parseFromTokens []             = Left "Empty expression"
 parseFromTokens [TVar var    ] = pure $ EVar var
 parseFromTokens (TLambda : xs) = do
     (remaining, args) <- extractArgs xs
-    remExpr           <- parseFromTokens remaining
-    pure $ newMultiArgumentLam args remExpr
-parseFromTokens (TVar fun : xs) = do
-    body <- parseFromTokens xs
-    case body of
-        app@(EApp bodyFun bodyArg) -> if head xs == TOpeningBracket
-            then pure $ EApp funVar app
-            else pure $ EApp (EApp funVar bodyFun) bodyArg
-        varOrLam -> pure $ EApp funVar varOrLam
-    where funVar = EVar fun
+    case args of
+        [] -> Left "Empty argument list in lambda"
+        _  -> do
+            remExpr <- parseFromTokens remaining
+            pure $ newMultiArgumentLam args remExpr
+parseFromTokens xs = case last xs of
+    (TVar var) -> do
+        body <- parseFromTokens $ init xs
+        pure $ EApp body (EVar var)
+    TClosingBracket -> do
+        (left, right) <- splitOnMatchingLeftBracket (init xs)
+        case left of
+            [] -> parseFromTokens right
+            _  -> case right of
+                [] -> Left "Empty expression in brackets"
+                _  -> do
+                    parsedLeft  <- parseFromTokens left
+                    parsedRight <- parseFromTokens right
+                    pure $ EApp parsedLeft parsedRight
+    _ -> Left "Invalid expression"
 
-parseFromTokens (TOpeningBracket : xs) = do
-    (left, right) <- splitOnMatchingBracket xs
-    parsedLeft    <- parseFromTokens left
-    if null right
-        then pure parsedLeft
-        else do
-            parsedRight <- parseFromTokens right
-            pure $ EApp parsedLeft parsedRight
-parseFromTokens _ = Left "Invalid expression"
+
 
 extractArgs :: [Token] -> Either String ([Token], [String])
 extractArgs (TDot     : xs) = pure (xs, [])
@@ -100,12 +101,16 @@ splitOnMatchingBracketUtil s acc (TClosingBracket : xs) =
 splitOnMatchingBracketUtil s acc (x : xs) =
     splitOnMatchingBracketUtil s (acc ++ [x]) xs
 
-reverseAssociativity :: Expr -> Expr
-reverseAssociativity app@(EApp fun@(EVar _) arg@(EVar _)) = app
-reverseAssociativity (EApp fun@(EVar _) (EApp argFun argArg)) =
-    EApp (EApp fun $ getLeftMost argFun) (reverseAssociativity argArg)
-reverseAssociativity e = e
+splitOnMatchingLeftBracket :: [Token] -> Either String ([Token], [Token])
+splitOnMatchingLeftBracket tokens = do
+    (rightReversed, leftReversed) <- splitOnMatchingBracket
+        (reverseTokens tokens)
+    pure (reverseTokens leftReversed, reverseTokens rightReversed)
 
-getLeftMost :: Expr -> Expr
-getLeftMost (EApp fun arg) = getLeftMost fun
-getLeftMost e              = e
+reverseTokens :: [Token] -> [Token]
+reverseTokens tokens = map swapBrackets (reverse tokens)
+
+swapBrackets :: Token -> Token
+swapBrackets TOpeningBracket = TClosingBracket
+swapBrackets TClosingBracket = TOpeningBracket
+swapBrackets t               = t

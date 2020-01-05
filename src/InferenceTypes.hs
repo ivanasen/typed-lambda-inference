@@ -21,9 +21,8 @@ data Expr
 
 instance Show Expr where
     show (EVar var                ) = var
-    show (EApp fun@(ELam _ _) arg ) = "(" ++ show fun ++ ") " ++ show arg
     show (EApp fun            arg ) = "(" ++ show fun ++ " " ++ show arg ++ ")"
-    show (ELam arg            body) = "λ" ++ arg ++ "." ++ show body
+    show (ELam arg            body) = "(λ" ++ arg ++ "." ++ show body ++ ")"
 
 
 infixr 5 :->
