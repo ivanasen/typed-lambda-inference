@@ -1,5 +1,6 @@
 module Inference
     ( infer
+    , showPrettyVar
     )
 where
 

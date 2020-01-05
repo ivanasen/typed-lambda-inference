@@ -8,9 +8,16 @@ import           Test.HUnit
 import           InferenceTypes                 ( Expr(..)
                                                 , Type(..)
                                                 )
-import           Inference                      ( infer )
+import           Inference                      ( infer
+                                                , showPrettyVar
+                                                )
 
-testList = TestList [positiveInferTests, negativeInferTests]
+testList =
+    TestList [positiveInferTests, negativeInferTests, showPrettyVarTests]
+
+isError :: Either a b -> Bool
+isError (Left _) = True
+isError _        = False
 
 positiveInferTests =
     TestLabel "infer_WhenPassedValidTypeExpression_ReturnsCorrectType"
@@ -75,6 +82,19 @@ negativeInferTests =
             )
         ]
 
-isError :: Either a b -> Bool
-isError (Left _) = True
-isError _        = False
+showPrettyVarTests =
+    TestLabel "showPrettyVar_WhenPassedANumber_ReturnsCorrectVariableName"
+        $ TestList
+              [ TestCase
+                  (assertEqual
+                      "if number is less than 0 then the result is \"\""
+                      ""
+                      (showPrettyVar (-23))
+                  )
+              , TestCase (assertEqual "first letter is A" "A" (showPrettyVar 0))
+              , TestCase (assertEqual "" "Z" (showPrettyVar 25))
+              , TestCase (assertEqual "" "AB" (showPrettyVar 26))
+              , TestCase (assertEqual "" "BB" (showPrettyVar 27))
+              , TestCase (assertEqual "" "CB" (showPrettyVar 28))
+              , TestCase (assertEqual "" "HN" (showPrettyVar 345))
+              ]

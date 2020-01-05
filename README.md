@@ -37,13 +37,13 @@ V ::= a         -- Identifier
 
 ```Bash
 > \x.x
-λx.x: (0 -> 0)
+λx.x: (A -> A)
 
 > \xyz.xyz
-λx.λy.λz.x y z: ((4 -> 3) -> ((2 -> 4) -> (2 -> 3)))
+λx.λy.λz.((x y) z): ((B -> (C -> D)) -> (B -> (C -> D))
 
 > \fxy.f(xy)
-λf.λx.λy.f x y: ((4 -> 3) -> ((2 -> 4) -> (2 -> 3)))
+λf.λx.λy.(f (x y)): ((E -> D) -> ((C -> E) -> (C -> D)))
 ```
 
 ## Tests
@@ -54,6 +54,7 @@ To execute the tests run:
 stack test
 ```
 
-## Project Structure
-
-The Project contains a fully working parser for the grammar described abovee, an implementation of the type inference algorithm, and a CLI used for fast and easy type inference checks.
+## Used Resources
+- [f(by) 2019 - Christoph Hegemann, TYPE INFERENCE FROM SCRATCH](https://www.youtube.com/watch?v=ytPAlhnAKro)
+- [Type Inference - For the Simply-Typed Lambda Calculus](https://proglang.informatik.uni-freiburg.de/teaching/compilerbau/2012ws/17-simply-typed.pdf)
+- [Lambda Calculus articles at crypto.stanford.edu](https://crypto.stanford.edu/~blynn/lambda/)

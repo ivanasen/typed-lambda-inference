@@ -2,6 +2,7 @@ module ExprParser
     ( tokenize
     , parse
     , Token(TDot, TVar, TOpeningBracket, TClosingBracket, TLambda)
+    , reverseAssociativity
     )
 where
 
@@ -98,3 +99,13 @@ splitOnMatchingBracketUtil s acc (TClosingBracket : xs) =
     splitOnMatchingBracketUtil (s - 1) (acc ++ [TClosingBracket]) xs
 splitOnMatchingBracketUtil s acc (x : xs) =
     splitOnMatchingBracketUtil s (acc ++ [x]) xs
+
+reverseAssociativity :: Expr -> Expr
+reverseAssociativity app@(EApp fun@(EVar _) arg@(EVar _)) = app
+reverseAssociativity (EApp fun@(EVar _) (EApp argFun argArg)) =
+    EApp (EApp fun $ getLeftMost argFun) (reverseAssociativity argArg)
+reverseAssociativity e = e
+
+getLeftMost :: Expr -> Expr
+getLeftMost (EApp fun arg) = getLeftMost fun
+getLeftMost e              = e
