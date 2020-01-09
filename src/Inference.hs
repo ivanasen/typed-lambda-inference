@@ -9,6 +9,7 @@ import qualified Data.Map                      as Map
 import           Data.Set                       ( Set )
 import qualified Data.Set                      as Set
 import           Control.Monad.State
+import           Control.Monad.Except
 
 import           InferenceTypes
 import           Substitution
@@ -18,23 +19,16 @@ initialVariableState = 0
 -- | inferType is the implementation of the Hindley-Milner type inference algorithm.
 -- It takes an Expression and returns Either an error or a type
 -- corresponding to that expression, according to the Simply typed lambda calculus.
--- inferType :: Expr -> Either String Type
--- inferType expr =
---     evalState (inferTypeUtil Map.empty expr) initialVariableState
---         >>= (\(s, ty) -> pure ty)
 inferType :: Expr -> Either String Type
-inferType expr =
-    evalStateT (inferTypeUtil Map.empty expr) initialVariableState
-        >>= (\(subst, ty) -> pure ty)
+inferType expr = do
+    (subst, ty) <- evalStateT (inferTypeUtil Map.empty expr)
+                              initialVariableState
+    pure ty
 
-
--- inferTypeUtil
---     :: Context -> Expr -> VarCountState (Either String (Substitution, Type))
 inferTypeUtil :: Context -> Expr -> VarCountState (Substitution, Type)
 
-
 inferTypeUtil ctx (EVar var) = case Map.lookup var ctx of
-    Nothing -> lift $ Left $ "Unbound variable: " ++ show var
+    Nothing -> throwError $ "Unbound variable: " ++ show var
     Just ty -> pure (Map.empty, ty)
 
 inferTypeUtil ctx (ELam arg body) = do
@@ -54,7 +48,7 @@ inferTypeUtil ctx (EApp fun arg) = do
 -- | unify takes two types t1 and t2, tries to unify them
 -- and returns the substitution which needs to be applied to make the equal.
 -- unify is also commutative
--- Examples (a and b are types variables):
+-- Examples (a and b are type variables):
 --     a U b == a
 --     a U (b -> c) == (b -> c)
 --     (a -> b) U (c -> d) == (a -> b)
@@ -78,8 +72,8 @@ newTyVar = do
 varBind :: String -> Type -> VarCountState Substitution
 varBind var ty
     | ty == TVar var = pure Map.empty
-    | Set.member var (freeTypeVars ty) = lift
-    $ Left "Recursive types are not supported"
+    | Set.member var (freeTypeVars ty) = throwError
+        "Recursive types are not supported"
     | otherwise = pure (Map.singleton var ty)
 
 freeTypeVars :: Type -> Set String

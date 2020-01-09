@@ -10,8 +10,6 @@ where
 import           Control.Monad.State
 import           Data.Map                       ( Map )
 
-
--- type VarCountState a = State Int a
 type VarCountState a = StateT Int (Either String) a
 
 data Expr
